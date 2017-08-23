@@ -1,0 +1,23 @@
+---
+# Front matter comment to ensure Jekyll properly reads file.
+---
+@import "colors";
+@import "fonts";
+@import "media_queries";
+@import "transitions";
+@import "grid";
+
+.page-content {
+  padding-top:10px;
+}
+
+.app-content {
+  /*resets*/
+  ul {
+    margin-left:0;
+  }
+
+  /* keyword area */
+
+
+}
