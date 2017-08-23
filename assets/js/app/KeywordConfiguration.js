@@ -7,14 +7,14 @@ define(['mixins/PubSub','mixins/VigenereCipher'],
   function (PubSub, Cipher) {
 
     let _Mixin = Object.assign({
-      init() {
-        console.log("KeywordConfiguration init")
-        //console.log("...this: ",this)
-        let keywordOffsets = this.getOffsetsForWord('snake');
+      /**
+      * look up ofset idx's for chars in a given keyword string.
+      */
+      getKeywordOffsets(keyword){
+        console.log("KeywordConfiguration"," getKeywordOffsets for:",keyword);
+        console.log("...this:",this)
+        let keywordOffsets = this.getOffsetsForWord(keyword);
         console.log("...keywordOffsets:",keywordOffsets);
-        //console.log("toCipherChar('l', 4) = ",this.toCipherChar('l', 4))
-
-
       }
     }, Cipher)
 

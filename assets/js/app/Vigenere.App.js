@@ -7,31 +7,24 @@ define([
   ],
   function (PubSub, Keyword, KeywordView) {
 
-    let _App  = {
+    let _App  = Object.assign({
       el:'.app-content',
 
       init(options){
         this.views = {keyword:Object.create(KeywordView)};
+        //console.log("toCipherChar('l', 4) = ",this.toCipherChar('l', 4))
 
         //start views
         for(i in this.views){
           this.views[i].init()
         }
 
-        Keyword.init();
-
         //mediate some events
-        //PubSub.subscribe('repo:item:click', _CMTS.add );
-        //PubSub.subscribe('search:input:entered', _ORG.add );
-        /*
-        PubSub.subscribe('org:store:set', (model) => {
-          _RPS.add(model.repos_url);
-        });
-        */
-        //PubSub.subscribe('sort:by',_RPS.sort);
+        PubSub.subscribe('keyword:update', this.getKeywordOffsets.bind(this));
+        
 
       }
-    };
+    }, Keyword);
 
   return _App;
 });

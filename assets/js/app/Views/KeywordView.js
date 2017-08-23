@@ -14,6 +14,7 @@ define([
       init() {
         console.log("KeywordView"," init");
         this.el = document.getElementById('keyword_configuration');
+        this.input = this.el.querySelector('.keyword-entry');
         this.template = Handlebars.compile(Template);
         //PubSub.subscribe('repo:store:set', this.render.bind(this) );
 
@@ -23,11 +24,11 @@ define([
         //console.log("delegateEvts:");
         this.el.addEventListener('click',function(e){
           e.preventDefault();
-
+          let keyword = this.input.value;
           if(RE_UPDATE_BTN.test(e.target.className)){
-            console.log('click')
+            console.log('click ',keyword);
 
-            PubSub.publish('repo:item:click',e.target);
+            PubSub.publish('keyword:update',keyword);
           }
         }.bind(this),false);
       },
