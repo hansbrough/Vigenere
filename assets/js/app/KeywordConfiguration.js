@@ -1,6 +1,6 @@
 /*
 * Keyword Configuration
-* mainly keeps track of state and provides acess to the cipher methods
+* mainly keeps track of state and provides access to the cipher methods
 */
 
 
@@ -8,7 +8,7 @@ define(['mixins/PubSub','mixins/VigenereCipher'],
   function (PubSub, Cipher) {
 
     let _Mixin = Object.assign({
-      currentOffsetIndex:null,//where to look in the current offset array,
+      currentOffsetIndex:null,//track where to look in the current offset array,
       offsets:[],
       /**
       *
@@ -36,6 +36,7 @@ define(['mixins/PubSub','mixins/VigenereCipher'],
         //console.log("KeywordConfiguration"," incrementCurrentIndex");
         let idx = this.currentOffsetIndex+1;
         this.currentOffsetIndex = (idx < this.offsets.length) ? idx : 0;
+        PubSub.publish('keyword:offset_index:update',this.currentOffsetIndex);
       },
       setKeywordOffsets(keyword){
         this.offsets = this.getOffsetsForWord(keyword);

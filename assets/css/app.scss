@@ -29,13 +29,17 @@
       padding: 10px;
       width: 50px;
     }
+
+    .row .active {
+      background: beige;
+    }
   }
 
   /* encoding area */
   .character-buttons li {
     display: inline-block;
     cursor:pointer;
-    
+
     span {
       display: inline-block;
       background: beige;
