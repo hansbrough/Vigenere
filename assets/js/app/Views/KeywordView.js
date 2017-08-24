@@ -12,11 +12,11 @@ define([
 
     let _View = {
       init() {
-        console.log("KeywordView"," init");
+        //console.log("KeywordView"," init");
         this.el = document.getElementById('keyword_configuration');
         this.input = this.el.querySelector('.keyword-entry');
         this.template = Handlebars.compile(Template);
-        //PubSub.subscribe('repo:store:set', this.render.bind(this) );
+        PubSub.subscribe('cipher:update', this.render.bind(this) );
 
         this.delegateEvts();
       },
@@ -26,15 +26,16 @@ define([
           e.preventDefault();
           let keyword = this.input.value;
           if(RE_UPDATE_BTN.test(e.target.className)){
-            console.log('click ',keyword);
-
             PubSub.publish('keyword:update',keyword);
           }
         }.bind(this),false);
       },
-      render(models=[]) {
-        //console.log("KeywordView"," render: ", models);
-        this.el.innerHTML = this.template(models);
+      render(cipher={}) {
+        //console.log("KeywordView"," cipher: ", cipher);
+        if( !Array.isArray(cipher.keyword) ){
+          cipher.keyword = cipher.keyword.split('');
+        }
+        this.el.querySelector('.keyword-offset-table').innerHTML = this.template(cipher);
       }
     }
 

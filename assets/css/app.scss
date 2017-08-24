@@ -1,11 +1,10 @@
 ---
 # Front matter comment to ensure Jekyll properly reads file.
 ---
+@import "mixins";
 @import "colors";
 @import "fonts";
 @import "media_queries";
-@import "transitions";
-@import "grid";
 
 .page-content {
   padding-top:10px;
@@ -17,7 +16,48 @@
     margin-left:0;
   }
 
-  /* keyword area */
+  section {
+    margin-bottom:15px;
+  }
 
+  /* keyword area */
+  .keyword-offset-table {
+    margin-top: 15px;
+
+    span {
+      @include character-box();
+      padding: 10px;
+      width: 50px;
+    }
+  }
+
+  /* encoding area */
+  .character-buttons li {
+    display: inline-block;
+    cursor:pointer;
+    
+    span {
+      display: inline-block;
+      background: beige;
+      min-width: 20px;
+      padding: 10px;
+    }
+  }
+
+  .character-encoding-table li {
+    @include character-box();
+
+  }
+
+  .character-encoding li {
+    min-width:40px;
+    min-height:44px;
+
+    span {
+      display: inline-block;
+      min-width: 20px;
+      padding: 10px;
+    }
+  }
 
 }
