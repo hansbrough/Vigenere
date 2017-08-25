@@ -16,6 +16,7 @@ define([
     const CSS_OFFSET    = '.offset-chars';
     const CSS_ACTIVE    = 'active';
     const CSS_ROW       = 'row';
+    const CSS_ERR       = 'error';
 
     let _View = {
       init() {
@@ -32,9 +33,14 @@ define([
         //console.log("delegateEvts:");
         this.el.addEventListener('click',function(e){
           e.preventDefault();
-          let keyword = this.input.value;
+          let keyword = this.input.value.replace(/[^a-z+]+/gi,'');
           if(RE_UPDATE_BTN.test(e.target.className)){
-            PubSub.publish('keyword:update',keyword);
+            if(keyword !== ''){
+              this.el.classList.remove(CSS_ERR);
+              PubSub.publish('keyword:update',keyword);
+            }else{
+              this.el.classList.add(CSS_ERR);
+            }
           }
         }.bind(this),false);
       },

@@ -29,6 +29,7 @@ define([
         this.template     = Handlebars.compile(Template);
         PubSub.subscribe('dictionary:encoding:updated', this.render.bind(this) );
         PubSub.subscribe('source:character:encoded', this.appendEncodedText.bind(this));
+        PubSub.subscribe('cipher:update', this.clearFields.bind(this));
 
         this.delegateEvts();
       },
@@ -41,10 +42,13 @@ define([
         let val = this.sourceInput.value;
         this.sourceInput.value = val+char;
       },
+      clearFields(){
+        this.sourceInput.value = '';
+        this.encodedInput.value = '';
+      },
       delegateEvts(){
         //console.log("EncodingView"," delegateEvts:");
         this.charTable.addEventListener('click',function(e){
-          //console.log(e.target);
           e.preventDefault();
           if(RE_CHAR_BTN.test(e.target.nodeName)){
             let char = e.target.innerText;
@@ -53,10 +57,7 @@ define([
           }
         }.bind(this),false);
 
-        this.clearInput.addEventListener('click', (e) => {
-          this.sourceInput.value = '';
-          this.encodedInput.value = '';
-        })
+        this.clearInput.addEventListener('click', this.clearFields.bind(this));
       },
       render(dict=[]) {
         //console.log("EncodingView"," dict: ", dict);

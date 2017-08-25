@@ -1,6 +1,42 @@
 @mixin character-box() {
-  border: 1px solid gray;
+  //border: 1px solid gray;
   display: inline-block;
   text-transform: capitalize;
   text-align: center;
+}
+
+@mixin placeholder {
+  &::-webkit-input-placeholder {@content}
+  &:-moz-placeholder           {@content}
+  &::-moz-placeholder          {@content}
+  &:-ms-input-placeholder      {@content}
+}
+
+/* buttons */
+@mixin app-button($background-color:#fff, $shadow-color:$lightGray, $color:inherit, $height:2.5em){
+  background-color: $background-color;
+  border-radius:9px;
+  border:1px solid $mediumGray;
+  box-shadow: 0 1px 0 0 $shadow-color;
+  color:$color;
+  height: $height;
+  line-height: $height;
+  overflow: hidden;
+  text-align: center;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+/* shapes */
+@mixin check-mark($color, $height, $width, $thickness, $top:calc(50%/2), $left:0){
+  /* Checkbox tick */
+  content: '';
+  position: absolute;
+  top: $top;
+  left: $left;
+  height: $height;
+  width: $width;
+  transform: rotate(45deg);
+  border: solid $color;
+  border-width: 0 $thickness $thickness 0;
 }

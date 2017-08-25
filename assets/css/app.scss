@@ -5,9 +5,16 @@
 @import "colors";
 @import "fonts";
 @import "media_queries";
+@import "grid";
+@import "forms";
+@import "themes/grapevine";
 
 .page-content {
   padding-top:10px;
+
+  .wrapper {
+    max-width: calc(920px - (30px * 2));
+  }
 }
 
 .app-content {
@@ -21,47 +28,113 @@
   }
 
   /* keyword area */
+  .keyword-entry {
+    width:100%;
+    margin-bottom: 15px;
+  }
+
   .keyword-offset-table {
-    margin-top: 15px;
+    border-top: 1px solid $lightGray;
+    margin-top: 30px;
+    padding-top: 15px;
+
 
     span {
+      &:first-of-type {
+        border-left:1px solid $lightPurple;
+      }
+
       @include character-box();
+      border-right:1px solid $lightPurple;
+      color:$lightGrayBlue;
       padding: 10px;
-      width: 50px;
+      width: 40px;
     }
 
     .row .active {
-      background: beige;
+      background: $lavender;
+      color:$charcoal;
+    }
+
+    .description {
+      margin-top:15px;
     }
   }
 
   /* encoding area */
-  .character-buttons li {
-    display: inline-block;
-    cursor:pointer;
+  .character-buttons {
+    margin-bottom:0;
 
-    span {
+    li {
+      cursor:pointer;
       display: inline-block;
-      background: beige;
-      min-width: 20px;
-      padding: 10px;
+      width: 30px;
+
+      span {
+        &:hover {
+          background: $mediumGray;
+        }
+        &:active {
+          background: $gray;
+          color:#fff;
+        }
+
+        display: inline-block;
+        background: #F6F4F4;
+        width: 26px;
+        padding: 4px 0;
+        border: 1px solid gray;
+        border-radius: 6px;
+      }
     }
   }
 
-  .character-encoding-table li {
-    @include character-box();
+  .character-encoding-table {
+    margin-bottom:15px;
 
+    li {
+      @include character-box();
+      border-left:1px solid $mediumGray;
+    }
+
+    ul li {
+      &:last-of-type {
+        border-right:1px solid $mediumGray;
+      }
+    }
   }
 
   .character-encoding li {
-    min-width:40px;
-    min-height:44px;
+    min-width:29px;
+    min-height:40px;
 
     span {
       display: inline-block;
-      min-width: 20px;
-      padding: 10px;
+      width: 29px;
+      padding: 10px 0 4px 0;
     }
   }
 
+  .results-container {
+    border-top:1px solid $lightGray;
+    padding-top:15px;
+
+    .results-msg {
+      clear:both;
+      margin-top: 15px;
+    }
+  }
+
+  /* error messaging */
+  .error-msg {
+    color:$salmon;
+    display:none;
+    margin:15px 0 0 0;
+  }
+
+  .error {
+    .error-msg {
+      display:block;
+    }
+  }
 }

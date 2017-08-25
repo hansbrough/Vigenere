@@ -29,7 +29,6 @@ define(['mixins/PubSub','mixins/VigenereCipher'],
       */
       getCurrentOffset(){
         //console.log("KeywordConfiguration"," getCurrentOffset");
-        //console.log("...this.currentOffsetIndex:",this.currentOffsetIndex);
         return this.offsets[this.currentOffsetIndex];
       },
       incrementCurrentOffsetIndex(){
@@ -41,6 +40,10 @@ define(['mixins/PubSub','mixins/VigenereCipher'],
       setKeywordOffsets(keyword){
         this.offsets = this.getOffsetsForWord(keyword);
         this.currentOffsetIndex = 0;
+      },
+      sanitizeKeyword(keyword=''){
+        //console.log("sanitizeKeyword:",keyword);
+        return keyword.replace(/[^a-z+]+/gi,'');
       }
     }, Cipher)
 

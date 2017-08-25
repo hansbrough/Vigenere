@@ -45,7 +45,6 @@ define([],
         let _idx = offset + idx;
         let __idx = (_idx >= len) ? _idx - len : _idx;
         let char = dict[__idx];
-        //console.log("...char:",char);
         return char;
       }
     }
