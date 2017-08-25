@@ -54,7 +54,10 @@ define([
           }
         }.bind(this),false);
 
-        this.clearInput.addEventListener('click', this.clearFields.bind(this));
+        this.clearInput.addEventListener('click', (e)=>{
+          this.clearFields();
+          PubSub.publish('source:text:reset',{});
+        });
       },
       render(dict=[]) {
         this.el.querySelector(CSS_E_DICT).innerHTML = this.template(dict);

@@ -7,7 +7,7 @@ define([
   'app/Views/EncodingView'
   ],
   function (PubSub, Keyword, KeywordView, EncodingView) {
-
+    //note: using a object composition pattern to mixin 'Keyword' methods w/the 'App' object
     let _App  = Object.assign({
       el:'.app-content',
 
@@ -41,7 +41,10 @@ define([
           PubSub.publish('dictionary:encoding:updated', encodedDictionary);
           PubSub.publish('source:character:encoded', encodedChar);
         });
-
+        //when the message has been cleared by user-output
+        PubSub.subscribe('source:text:reset', () => {
+          this.resetCurrentOffsetIndex();
+        });
       }
     }, Keyword);
 
