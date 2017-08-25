@@ -115,6 +115,19 @@
     }
   }
 
+  .user-output {
+    border: 1px solid $mediumGray;
+    border-radius: 6px;
+    color:$mediumGray;
+    box-shadow: inset 0px 0px 2px 1px #F6F4F4;
+    min-height: 45px;
+    padding: .75em;
+  }
+
+  .encoded-text {
+    color:$darkGray;
+  }
+
   .results-container {
     border-top:1px solid $lightGray;
     padding-top:15px;

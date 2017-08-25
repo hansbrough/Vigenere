@@ -22,8 +22,8 @@ define([
         //console.log("EncodingView"," init");
         this.el           = document.getElementById(CSS_PARENT);
         this.charTable    = this.el.querySelector(CSS_BTNS);
-        this.encodedInput = this.el.querySelector(CSS_E_TXT);
-        this.sourceInput  = this.el.querySelector(CSS_S_TXT);
+        this.encodedDisplay = this.el.querySelector(CSS_E_TXT);
+        this.sourceDisplay  = this.el.querySelector(CSS_S_TXT);
         this.clearInput   = this.el.querySelector(CSS_CLEAR);
 
         this.template     = Handlebars.compile(Template);
@@ -35,16 +35,17 @@ define([
       },
       appendEncodedText(char){
         //console.log("EncodingView"," appendEncodedText:",char);
-        let val = this.encodedInput.value;
-        this.encodedInput.value = val+char;
+        let val = this.encodedDisplay.innerText;
+        this.encodedDisplay.innerText = val+char;
       },
       appendSourceText(char){
-        let val = this.sourceInput.value;
-        this.sourceInput.value = val+char;
+        //let val = this.sourceDisplay.value;
+        let val = this.sourceDisplay.innerText;
+        this.sourceDisplay.innerText = val+char;
       },
       clearFields(){
-        this.sourceInput.value = '';
-        this.encodedInput.value = '';
+        this.sourceDisplay.innerText = '';
+        this.encodedDisplay.innerText = '';
       },
       delegateEvts(){
         //console.log("EncodingView"," delegateEvts:");
