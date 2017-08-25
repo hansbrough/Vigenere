@@ -19,14 +19,13 @@ define([
 
     let _View = {
       init() {
-        //console.log("EncodingView"," init");
         this.el           = document.getElementById(CSS_PARENT);
         this.charTable    = this.el.querySelector(CSS_BTNS);
         this.encodedDisplay = this.el.querySelector(CSS_E_TXT);
         this.sourceDisplay  = this.el.querySelector(CSS_S_TXT);
         this.clearInput   = this.el.querySelector(CSS_CLEAR);
-
         this.template     = Handlebars.compile(Template);
+        //listen for pertinent evts from other objects
         PubSub.subscribe('dictionary:encoding:updated', this.render.bind(this) );
         PubSub.subscribe('source:character:encoded', this.appendEncodedText.bind(this));
         PubSub.subscribe('cipher:update', this.clearFields.bind(this));
@@ -34,12 +33,10 @@ define([
         this.delegateEvts();
       },
       appendEncodedText(char){
-        //console.log("EncodingView"," appendEncodedText:",char);
         let val = this.encodedDisplay.innerText;
         this.encodedDisplay.innerText = val+char;
       },
       appendSourceText(char){
-        //let val = this.sourceDisplay.value;
         let val = this.sourceDisplay.innerText;
         this.sourceDisplay.innerText = val+char;
       },
@@ -48,7 +45,6 @@ define([
         this.encodedDisplay.innerText = '';
       },
       delegateEvts(){
-        //console.log("EncodingView"," delegateEvts:");
         this.charTable.addEventListener('click',function(e){
           e.preventDefault();
           if(RE_CHAR_BTN.test(e.target.nodeName)){
@@ -61,7 +57,6 @@ define([
         this.clearInput.addEventListener('click', this.clearFields.bind(this));
       },
       render(dict=[]) {
-        //console.log("EncodingView"," dict: ", dict);
         this.el.querySelector(CSS_E_DICT).innerHTML = this.template(dict);
       }
     }
