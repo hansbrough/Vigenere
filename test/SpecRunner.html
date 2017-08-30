@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Jasmine Spec Runner v2.8.0</title>
+
+  <link rel="shortcut icon" type="image/png" href="lib/jasmine-2.8.0/jasmine_favicon.png">
+  <link rel="stylesheet" href="lib/jasmine-2.8.0/jasmine.css">
+
+  <!--
+  Note: this is a modified version of the stand alone Jasmine spec runner. This uses amd style mods w/requirejs
+  in order to load and test the app's components individually.
+  View's have their needed dom nodes injected from a setup section in the specs.
+  Because requirejs happens async after window load event we need to re-throw the event in order to trigger Jasmine.
+  -->
+  <script src="../assets/js/lib/require-min.js"></script>
+  <script>
+  requirejs(['requireConfig.js'], function () {
+    requirejs(['jasmine-boot'], function(jasmine){
+      requirejs(['spec/CipherSpec.js']);
+      requirejs(['spec/KeywordViewSpec.js']);
+      requirejs(['spec/EncodingViewSpec.js'], function(){
+        window.onload();//trigger Jasmine
+      });
+    })
+
+  });
+  </script>
+</head>
+
+<body>
+</body>
+</html>
