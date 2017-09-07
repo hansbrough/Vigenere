@@ -1,6 +1,6 @@
 //AMD module
 //View for the character encoding section
-
+//hi heathbars wuz here!!!!
 define([
   'mixins/PubSub',
   'handlebars',
